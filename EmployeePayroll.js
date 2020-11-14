@@ -17,11 +17,13 @@ function getWorkingHours(emp_check){
   }
 }
 let total_Wage = 0
-let emp_hrs = 0
-for(let i = 0; i < NO_OF_DAYS; i++){
+let total_hrs = 0
+let working_days = 0
+while(total_hrs <= 160 && working_days < 20){
+  working_days++;
   let emp_check = Math.floor(Math.random() * 10) % 3;
-  emp_hrs += getWorkingHours(emp_check);
+  total_hrs += getWorkingHours(emp_check);
   
 }
-let total_wage = emp_hrs * WAGE_PER_HOUR;
-console.log("Employee Wage is " + total_wage);
+let total_wage = total_hrs * WAGE_PER_HOUR;
+console.log("Employee Wage for " + working_days +" working days with " + total_hrs + " hours is " + total_wage);
