@@ -40,26 +40,36 @@ while(totalHrs <= MAX_HRS_IN_MONTH && totalWorkDays < NO_OF_DAYS){
 }
 console.log("" + empHrsAndWageArray)
 
-//11A
-const calcTotalWages = (totalWage, dailyHrsAndWage) => totalWage = totalWage + dailyHrsAndWage.dailyWage
-let totalWages = empHrsAndWageArray.filter(dailyHrsAndWage => dailyHrsAndWage.dailyWage > 0).reduce(calcTotalWages, 0) 
-console.log("Total Wages using object is " + totalWages)
-console.log("Total Hours employee worked is "+ empHrsAndWageArray.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours > 0)
-                                            .reduce((totalHrs, dailyHrsAndWage) => totalHrs += dailyHrsAndWage.dailyHours, 0))
+class EmployeePayrollData {
+  constructor(id, name, salary){
+    this.id = id
+    this.name = name
+    this.salary = salary
+  }
+  get id(){
+    return this._id
+  }
+  set id(id){
+    this._id = id
+  }
+  get name() {
+    return this._name
+  }
+  set name(name){
+    this._name = name
+  }
+  get salary() {
+    return this._name
+  }
+  set salary(salary){
+    this._salary = salary
+  }
+  toString(){
+    return "id = " + this.id + ", name = " + this.name + ", salary = " + this.salary
+  }
+}
 
-//11B
-console.log()
-process.stdout.write("Employee details of full time ")
-empHrsAndWageArray.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 8)
-                  .forEach(dailyHrsAndWage => process.stdout.write(dailyHrsAndWage.toString()))
-
-//11C
-console.log()
-let partTimeArray = empHrsAndWageArray.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 4)
-                  .map(dailyHrsAndWage => dailyHrsAndWage.toString())
-console.log("Part Time Working Strings " + partTimeArray)
-
-//11D
-console.log()
-let notWorkingArray = empHrsAndWageArray.filter(dailyHrsAndWage => dailyHrsAndWage.dailyHours == 0).map(dailyHrsAndWage => dailyHrsAndWage.dayNum)
-console.log("Non Working Day Nums : " + notWorkingArray)
+let employeePayrollData = new EmployeePayrollData(1, "Mark", 2000)
+console.log(employeePayrollData.toString())
+employeePayrollData.name = "John"
+console.log(employeePayrollData.toString())
