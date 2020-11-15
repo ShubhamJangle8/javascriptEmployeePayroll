@@ -41,10 +41,12 @@ while(totalHrs <= MAX_HRS_IN_MONTH && totalWorkDays < NO_OF_DAYS){
 console.log("" + empHrsAndWageArray)
 
 class EmployeePayrollData {
-  constructor(id, name, salary){
-    this.id = id
-    this.name = name
-    this.salary = salary
+  constructor(...params){
+    this.id = params[0]
+    this.name = params[1]
+    this.salary = params[2]
+    this.gender = params[3]
+    this.date = params[4]
   }
   get id(){
     return this._id
@@ -59,17 +61,33 @@ class EmployeePayrollData {
     this._name = name
   }
   get salary() {
-    return this._name
+    return this._salary
   }
   set salary(salary){
     this._salary = salary
   }
+  get gender() {
+    return this._gender
+  }
+  set gender(gender){
+    this._gender = gender
+  }
+  get date() {
+    return this._date
+  }
+  set date(date){
+    this._date = date
+  }
   toString(){
-    return "id = " + this.id + ", name = " + this.name + ", salary = " + this.salary
+    const options = {year : 'numeric', month : 'long', day : 'numeric'}
+    const empDate = this.date === undefined ? "undefined" : this.date.toLocaleDateString("en-US", options);
+    return "id = " + this.id + ", name = " + this.name + ", salary = " + this.salary 
+                   + ", gender = " + this.gender + ", date = " + empDate
   }
 }
-
 let employeePayrollData = new EmployeePayrollData(1, "Mark", 2000)
 console.log(employeePayrollData.toString())
 employeePayrollData.name = "John"
 console.log(employeePayrollData.toString())
+let newEmployeePayrollData = new EmployeePayrollData(1, "Mark", 2000, "M", new Date())
+console.log(newEmployeePayrollData.toString())
